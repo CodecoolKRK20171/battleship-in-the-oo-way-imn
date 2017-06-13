@@ -1,22 +1,20 @@
+from ship import Ship
+from square import Square
+from ocean import Ocean
+
 
 class Player:
-
-    def __init__(self):
+    def __init__(self, name, ocean):
         self.name = name
-        pass
+        self.ocean = ocean
 
-    def add_ship(self, position_x, position_y, size, is_horizontal=False):
-        positions = []
+    def shot(self, position_x, position_y):
+        self.ocean.board[position_y][position_x].un_hide()
 
-        for i in range(size):
-            if is_horizontal:
-                position_x += 1
-            else:
-                position_y += 1
-            positions.append((position_x, position_y))
-
-        positions = tuple(positions)
-        self.ships.append(Ship(positions))
-
-    def shot(self):
-        pass
+    def add_ship(self, position_x, position_y, size, is_horizontal):
+        if is_horizontal:
+            for i in range(size):
+                self.ocean.board[position_y][position_x+i].ship()
+        else:
+            for i in range(size):
+                self.ocean.board[position_y+i][position_x].ship()

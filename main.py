@@ -1,14 +1,24 @@
 from square import Square
 from ship import Ship
 from ocean import Ocean
+from player import Player
+
+
+def player_inputs(ship_x, ship_y, ship_size, is_horizontal):
+    pass
 
 
 def main():
-    ship = Ship(((2, 3), (2, 4), (2, 5)))
+
     ocean = Ocean()
-    ocean.add_ship(2, 3, 4, True)
-    ocean.add_ship(0, 0, 2, False)
     ocean.fill_board()
+    player = Player('Andrzej', ocean)
+
+    player.add_ship(1, 5, 3, True)
+    player.add_ship(4, 4, 3, False)
+    player.shot(4, 4)
+    player.shot(1, 5)
+    player.shot(5, 1)
     print(ocean)
 
 

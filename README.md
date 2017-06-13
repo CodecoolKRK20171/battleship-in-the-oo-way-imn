@@ -8,7 +8,7 @@ The object of Battleship is to try and sink all of the other player's before the
 
 
 ### `main.py`
-Control of the program.
+Controls of the program.
 
 
 ### `square.py`
@@ -68,7 +68,7 @@ __Instance methods__
 ### Class Ocean
 
 __Attributes__
-  -
+  --
 
 __Instance methods__
 
@@ -88,3 +88,17 @@ __Instance methods__
 
   Append empty spaces to board.
   Adds ship to board on proper places/
+
+
+### `player.py`
+
+### Class Player
+
+__Attributes__
+  --
+
+__Instance methods__
+
+* ##### ` __init__(self)`
+
+  Constructs an Player object.

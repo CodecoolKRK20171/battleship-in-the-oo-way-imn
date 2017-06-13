@@ -1,5 +1,4 @@
 from square import Square
-from ship import Ship
 from ocean import Ocean
 from player import Player
 

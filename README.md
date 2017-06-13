@@ -95,7 +95,9 @@ __Instance methods__
 ### Class Player
 
 __Attributes__
-  --
+* `shot_position`
+  - data:
+  - description: 
 
 __Instance methods__
 

@@ -5,7 +5,6 @@ class Square:
         self.column = column
 
     def __str__(self):
-
         if self.is_marked:
             mark = 'x'
         else:

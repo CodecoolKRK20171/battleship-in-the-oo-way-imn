@@ -1,13 +1,22 @@
 from ship import Ship
+from square import Square
+
 
 class Ocean:
-
     def __init__(self):
         self.ships = []
         self.board = []
 
     def __str__(self):
-        return '\n'.join([''.join(row) for row in self.board])
+        ocean_str = ' ABCDEFGHIJ\n'
+        i = -1
+        for lista in self.board:
+            i += 1
+            ocean_str += str(i)
+            for item in lista:
+                ocean_str += str(item)
+            ocean_str += '\n'
+        return ocean_str
 
     def add_ship(self, position_x, position_y, size, is_horizontal=False):
         positions = []
@@ -21,13 +30,9 @@ class Ocean:
 
         positions = tuple(positions)
         self.ships.append(Ship(positions))
-        
 
     def fill_board(self):
-        for i in range(0,10):
-            self.board.append([' ']*10)
-
-
-        for ship in self.ships:
-            for square in ship.squares:
-                self.board[square.column][square.row] = str(square)
+        for i in range(0, 10):
+            self.board.append([])
+            for j in range(0, 10):
+                self.board[i].append(Square(i, j))

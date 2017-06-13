@@ -1,5 +1,4 @@
 from square import Square
-from ship import Ship
 from ocean import Ocean
 from player import Player
 
@@ -9,7 +8,7 @@ def player_inputs(ship_x, ship_y, ship_size, is_horizontal):
 
 
 def main():
-    
+
     ocean = Ocean()
     ocean.fill_board()
     player = Player('Andrzej', ocean)

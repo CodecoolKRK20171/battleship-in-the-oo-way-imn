@@ -1,4 +1,3 @@
-from ship import Ship
 from square import Square
 from ocean import Ocean
 

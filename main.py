@@ -10,7 +10,7 @@ from player import Player
 #                     ['Cruiser', 3],
 #                     ['Submarine', 3],
 #                     ['Destroyer', 2]]
-BATTLESHIP_SIZES = {'Carrier': 5,'Destroyer': 2 }
+
 
 
 def print_table(table, title_list):
@@ -65,40 +65,6 @@ def print_table(table, title_list):
 
 
 # # def add_player():
-
-
-def get_coordinates(player, ship_kinds, BATTLESHIP_SIZES):
-
-    print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
-    ship_choice = input('Enter which ship you would like to locate: ')
-
-    if ship_choice in ship_kinds:
-        ship_size = int(BATTLESHIP_SIZES[ship_choice])
-        ship_kinds.remove(ship_choice)
-
-        is_horizontal = ''
-        while is_horizontal not in ['1', '0']:
-            is_horizontal = input('\nEnter if your ship is horizontal(1/0): ')
-
-        print('\nNow you need to locate your battleships')
-        letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-        # position = ''
-        # while position[0].upper() not in letters and int(position[1]) > 9:
-        position = input('Enter coordinates(e.g. H5): ')
-
-        for letter in letters:
-            if position[0].upper() == letter:
-                position_x = int(letters.index(letter))
-        position_y = int(position[1])
-        # check = player.check_position(position_x, position_y, ship_size, is_horizontal)
-        # if check == False:
-        #     break
-    else:
-        print('There is no such option!')
-    return position_x, position_y, ship_size, int(is_horizontal)
-
-
-
 
 
 

@@ -18,7 +18,7 @@ class Ocean:
             ocean_str += '|' + '\n'
         ocean_str += '--------------\n'
         return ocean_str
-        
+
     def load_board(self):
         for i in range(0, 10):
             self.board.append([])

@@ -2,6 +2,9 @@ from square import Square
 from ocean import Ocean
 
 
+SQUARES_AROUND_SHIP = [[-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]]
+
+
 class Player:
     def __init__(self, name, ocean):
         self.name = name
@@ -38,26 +41,10 @@ class Player:
 
     def add_ship(self, position_x, position_y, size, is_horizontal):
         if is_horizontal:
-            SQRS_ARND_SHIP = [[-1, 1],
-                              [0, 1],
-                              [1, 1],
-                              [1, 0],
-                              [1, -1],
-                              [0, -1],
-                              [-1, -1],
-                              [-1, 0]]
-            self.add_squares_around_horizontal(SQRS_ARND_SHIP, position_x, position_y, size, is_horizontal)
+            self.add_squares_around_horizontal(SQUARES_AROUND_SHIP, position_x, position_y, size, is_horizontal)
 
-        else:   # horizontal = False
-            SQRS_ARND_SHIP = [[-1, 1],
-                              [0, 1],
-                              [1, 1],
-                              [1, 0],
-                              [1, -1],
-                              [0, -1],
-                              [-1, -1],
-                              [-1, 0]]
-            self.add_squares_around_vertical(SQRS_ARND_SHIP, position_x, position_y, size, is_horizontal)
+        else:   # vertical (horizontal = False)
+            self.add_squares_around_vertical(SQUARES_AROUND_SHIP, position_x, position_y, size, is_horizontal)
 
     def check_position(self, position_x, position_y, size, is_horizontal):
         checking_size = size + 2

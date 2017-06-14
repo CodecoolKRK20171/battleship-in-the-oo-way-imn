@@ -5,12 +5,11 @@ from player import Player
 
 LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
-
-# BATTLESHIP_SIZES = [['Carrier', 5],
-#                     ['Battleship', 4],
-#                     ['Cruiser', 3],
-#                     ['Submarine', 3],
-#                     ['Destroyer', 2]]
+# BATTLESHIP_SIZES = {'Carrier': 5,
+#                     'Battleship': 4,
+#                     'Cruiser': 3,
+#                     'Submarine': 3,
+#                     'Destroyer': 2}
 
 BATTLESHIP_SIZES = {'c': 3, 'b': 2}
 

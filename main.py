@@ -75,30 +75,6 @@ def main():
     player = Player(player1, ocean1)
 
 
-    # for ship in BATTLESHIP_SIZES:
-    #     print_table(BATTLESHIP_SIZES, ['Battleship', 'Size'])
-    #     ship_choice = input('Enter which ship you would like to locate:')
-    #     if ship_choice.upper() == ship[0].upper():
-    #         ship_size = ship[1]
-    #         BATTLESHIP_SIZES.remove(ship)
-    #         print(BATTLESHIP_SIZES)
-    #
-    #         is_horizontal = int(input('\nEnter if your ship is horizontal(1/0):'))
-    #
-    #         print('\nNow you need to locate your battleships')
-    #         position = input('Enter coordinates(e.g. H5):')
-    #         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-    #
-    #         for letter in  letters:
-    #             if position[0].upper() == letter:
-    #                 position_x = letters.index(letter)
-    #         position_y = position[1]
-    #
-    #     else:
-    #         print('There is no such ship!')
-
-
-
     ship_kinds = []
     for i in range(len(BATTLESHIP_SIZES)):
         ship_kinds.append(BATTLESHIP_SIZES[i][0])
@@ -108,8 +84,6 @@ def main():
         print_table(BATTLESHIP_SIZES, ['Battleship kind', 'Size'])
         ship_choice = input('Enter which ship you would like to locate: ')
         if ship_choice in ship_kinds:
-            ship_size = int(BATTLESHIP_SIZES[i][1])
-            print(ship_size)
 
             index_to_del = 0
             for i in range(len(BATTLESHIP_SIZES)):
@@ -118,11 +92,14 @@ def main():
                 else:
                     index_to_del += 1
 
+            ship_size = int(BATTLESHIP_SIZES[index_to_del][1])
+
             del BATTLESHIP_SIZES[index_to_del]
             ship_kinds.remove(ship_choice)
             print(BATTLESHIP_SIZES)
 
             is_horizontal = int(input('\nEnter if your ship is horizontal(1/0): '))
+
 
             print('\nNow you need to locate your battleships')
             position = input('Enter coordinates(e.g. H5): ')
@@ -132,9 +109,11 @@ def main():
                 if position[0].upper() == letter:
                     position_x = int(letters.index(letter))
             position_y = int(position[1])
-
-            player.add_ship(position_x, position_y, ship_size, True)
-
+            check = player.check_position(position_x, position_y, ship_size, is_horizontal)
+            if check:
+                player.add_ship(position_x, position_y, ship_size, is_horizontal)
+            else:
+                print('koza')
             for row in ocean1.board:
                 for column in row:
                     column.un_hide()
@@ -143,18 +122,6 @@ def main():
             print('There is no such ship!')
 
     print('statki wybrane')
-
-
-
-        # else:
-        #     raise IndexError('There are only 5 ships!')
-
-
-
-
-
-
-
 
 
     player.add_ship(4, 4, 3, False)

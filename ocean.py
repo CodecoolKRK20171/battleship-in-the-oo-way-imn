@@ -17,6 +17,7 @@ class Ocean:
             ocean_str += '\n'
         return ocean_str
 
+
     def add_ship(self, position_x, position_y, size, is_horizontal=False):
         positions = []
 
@@ -29,6 +30,7 @@ class Ocean:
 
         positions = tuple(positions)
         self.ships.append(Ship(positions))
+
 
     def load_board(self):
         for i in range(0, 10):

@@ -1,6 +1,14 @@
 from square import Square
 from ocean import Ocean
 
+SQRS_ARND_SHIP = [[-1, 1],
+                    [0, 1],
+                    [1, 1],
+                    [1, 0],
+                    [1, -1],
+                    [0, -1],
+                    [-1, -1],
+                    [-1, 0]]
 
 class Player:
     def __init__(self, name, ocean):
@@ -63,18 +71,39 @@ class Player:
         checking_size = size + 2
 
         if is_horizontal:
-            horizontal_position_x = position_x - 1
-            for i in range(checking_size):
-                if self.ocean.board[position_y][horizontal_position_x+i].is_water:
-                    return False
-                elif self.ocean.board[position_y+1][horizontal_position_x+i].is_water or self.ocean.board[position_y-1][horizontal_position_x+i].is_water:
-                    return False
+
+            for i in range(size):
+                x = position_y 
+                y = position_x + i
+                if x in range(0, 10) and y in range(0, 10):
+                    if self.ocean.board[x][y].is_water:
+                        return False
             return True
+
         else:
-            horizontal_position_y = position_y - 1
-            for i in range(checking_size):
-                if self.ocean.board[horizontal_position_y+i][position_x].is_water:
-                    return False
-                elif self.ocean.board[horizontal_position_y+i][position_x+1].is_water or self.ocean.board[horizontal_position_y+i][position_x-1].is_water:
-                    return False
+
+            for i in range(size):
+                x = position_y + i
+                y = position_x
+                if x in range(0, 10) and y in range(0, 10):
+                    if self.ocean.board[x][y].is_water:
+                        return False
             return True
+
+
+        
+            
+        #     for i in range(checking_size):
+        #         if self.ocean.board[position_y][position_x+i].is_water:
+        #             return False
+        #         elif self.ocean.board[position_y+1][position_x+i].is_water or self.ocean.board[position_y-1][position_x+i].is_water:
+        #             return False
+        #     return True
+        # else:
+            
+        #     for i in range(checking_size):
+        #         if self.ocean.board[position_y+i][position_x].is_water:
+        #             return False
+        #         elif self.ocean.board[position_y+i][position_x+1].is_water or self.ocean.board[position_y+i][position_x-1].is_water:
+        #             return False
+        #     return True

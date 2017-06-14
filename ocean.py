@@ -30,7 +30,7 @@ class Ocean:
         positions = tuple(positions)
         self.ships.append(Ship(positions))
 
-    def fill_board(self):
+    def load_board(self):
         for i in range(0, 10):
             self.board.append([])
             for j in range(0, 10):

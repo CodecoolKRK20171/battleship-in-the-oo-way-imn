@@ -11,7 +11,9 @@ LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 #                     'Submarine': 3,
 #                     'Destroyer': 2}
 
+
 BATTLESHIP_SIZES = {'c': 3, 'b': 2}
+
 
 
 def print_table(table, title_list):
@@ -65,6 +67,9 @@ def print_table(table, title_list):
             line_between_rows = '|'
 
 
+
+# # def add_player():
+
 def main():
     player1 = input('Enter your name: ')
 
@@ -84,6 +89,7 @@ def main():
             ship_size = int(BATTLESHIP_SIZES[ship_choice])
 
             is_horizontal = ''
+
             while is_horizontal not in ['1', '0']:
                 is_horizontal = input('\nEnter if your ship is horizontal(1/0): ')
 
@@ -100,13 +106,16 @@ def main():
                 if position[0].upper() == letter:
                     position_x = int(LETTERS.index(letter))
             position_y = int(position[1])
-            # check = player1.check_position(position_x, position_y, ship_size, is_horizontal)
-            # print(check)
-            # if check:
-            player1.add_ship(position_x, position_y, ship_size, is_horizontal)
-            print(ocean1)
+            check = player1.check_position(position_x, position_y, ship_size, is_horizontal)
+            print(check)
+            if check:
+                player1.add_ship(position_x, position_y, ship_size, is_horizontal)
+                ship_kinds.remove(ship_choice)
+                print(ocean1)
+            else:
+                print('youre bob')
 
-            ship_kinds.remove(ship_choice)
+            
 
         else:
             print('There is no such option!')
@@ -115,7 +124,6 @@ def main():
         for column in row:
             column.un_hide()
     print(ocean1)
-
 
 if __name__ == '__main__':
     main()

@@ -15,16 +15,22 @@ BATTLESHIP_SIZES = [['Carrier', 5],
 
 
 def main():
-    
-    
+
+
     player1 = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
     player = Player(player1, ocean1)
+    ship_choice = int(input('Enter which ship you would like to locate:')
+
+    for i in range(len(BATTLESHIP_SIZES)):
+        if ship_choice == BATTLESHIP_SIZES[i]:
+            ship_type = BATTLESHIP_SIZES[i-1]
+            BATTLESHIP_SIZES.remove(BATTLESHIP_SIZES[i-1])
     print('Now you need to locate your battleships\n')
 
-    for key, value in BATTLESHIP_SIZES.items():
-        print('{} size: {}'.format(key, value))
+
+
 
 
     player.add_ship(1, 5, 3, True)

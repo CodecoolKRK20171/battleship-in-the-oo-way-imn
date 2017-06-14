@@ -7,8 +7,13 @@ class Square:
         self.column = column
 
     def __str__(self):
-        if self.is_hidden:
-            mark = '~'
+        # if self.is_hidden:
+        #     mark = '~'
+
+        if self.is_ship:
+            mark = '@'
+        elif self.is_water:
+            mark = 'w'
         else:
             if self.is_ship:
                 mark = 'x'
@@ -21,7 +26,6 @@ class Square:
 
     def ship(self):
         self.is_ship = True
-    
+
     def water(self):
         self.is_water = True
-        

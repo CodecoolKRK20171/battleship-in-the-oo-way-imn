@@ -66,16 +66,34 @@ def print_table(table, title_list):
 
 def main():
 
+
     player1 = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
     player = Player(player1, ocean1)
-    print('Now you need to locate your battleships\n')
-
     print_table(BATTLESHIP_SIZES, ['Battleship', 'Size'])
-    #
-    # for key, value in BATTLESHIP_SIZES.items():
-    #     print('{} size: {}'.format(key, value))
+
+
+    for ship in BATTLESHIP_SIZES:
+        ship_choice = input('Enter which ship you would like to locate:')
+        if ship_choice.upper() == ship[0].upper():
+            ship_type = ship
+            BATTLESHIP_SIZES.remove(ship)
+    print(BATTLESHIP_SIZES)
+        # else:
+        #     raise IndexError('There are only 5 ships!')
+
+
+
+    is_horizontal = int(input('\nEnter if your ship is horizontal(1/0):'))
+    print('\nNow you need to locate your battleships')
+    position_x = int(input('\nEnter X coordinate:'))
+    position_y = int(input('\nEnter Y coordinate:'))
+
+
+
+
+
 
     player.add_ship(1, 5, 3, True)
     player.add_ship(4, 4, 3, False)

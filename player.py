@@ -14,158 +14,50 @@ class Player:
         else:
             print('Miss!')
 
-    def add_squares_around_horizontal(self, square_around_list):
-        self.square_around_list = square_around_list
+    def add_squares_around_horizontal(self, square_around_list, position_x, position_y, size, is_horizontal):
         for i in range(size):
             self.ocean.board[position_y][position_x+i].ship()
-            self.ocean.board[position_y][position_x+i].water()
-            for j in range(len(square_around_list)):
-                self.ocean.board[position_y + square_around_list[j][0]][position_x + square_around_list[j][1]].water()
 
-    def add_squares_around_vertical(self, square_around_list):
-        self.square_around_list = square_around_list
+            for j in square_around_list:
+                x = position_y + j[0]
+                y = position_x + j[1] + i
+
+                if x in range(0, 10) and y in range(0, 10):
+                    self.ocean.board[x][y].water()
+
+    def add_squares_around_vertical(self, square_around_list, position_x, position_y, size, is_horizontal):
         for i in range(size):
             self.ocean.board[position_y+i][position_x].ship()
-            self.ocean.board[position_y+i][position_x].water()
-            for j in range(len(SQRS_ARND_SHIP)):
-                self.ocean.board[position_y + SQRS_ARND_SHIP[j][0]][position_x + SQRS_ARND_SHIP[j][1]].water()
+
+            for j in square_around_list:
+                x = position_y + j[0] + i
+                y = position_x + j[1]
+
+                if x in range(0, 10) and y in range(0, 10):
+                    self.ocean.board[x][y].water()
 
     def add_ship(self, position_x, position_y, size, is_horizontal):
         if is_horizontal:
-            if position_x+size < 9 and position_y in range(1, 9):     # 9
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [1, -1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y == 0:   # 1
-                SQRS_ARND_SHIP = [[1, 0],
-                                  [1, -1],
-                                  [0, -1]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x+size < 9 and position_y == 0:     # 2
-                SQRS_ARND_SHIP = [[1, 0],
-                                  [1, -1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x+size < 9 and position_y == 0:     # 3
-                SQRS_ARND_SHIP = [[0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x+size == 9 and position_y in range(1, 9):     # 4
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x+size == 9 and position_y == 9:     # 5
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x+size < 9 and position_y in range(1, 9):     # 6
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [-1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y == 9:     # 7
-                SQRS_ARND_SHIP = [[0, 1],
-                                  [1, 1],
-                                  [1, 0]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y in range(1, 9):     # 8
-                SQRS_ARND_SHIP = [[0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [1, -1],
-                                  [0, -1]]
-                add_squares_around_horizontal(SQRS_ARND_SHIP)
+            SQRS_ARND_SHIP = [[-1, 1],
+                              [0, 1],
+                              [1, 1],
+                              [1, 0],
+                              [1, -1],
+                              [0, -1],
+                              [-1, -1],
+                              [-1, 0]]
+            self.add_squares_around_horizontal(SQRS_ARND_SHIP, position_x, position_y, size, is_horizontal)
 
         else:   # horizontal = False
-            if position_x in range(1, 9) and position_y+size < 9:     # 9
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [1, -1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y == 0:   # 1
-                SQRS_ARND_SHIP = [[1, 0],
-                                  [1, -1],
-                                  [0, -1]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x in range(1, 9) and position_y+size < 9:     # 2
-                SQRS_ARND_SHIP = [[1, 0],
-                                  [1, -1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 9 and position_y+size < 9:     # 3
-                SQRS_ARND_SHIP = [[0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 9 and position_y+size < 9:     # 4
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [0, -1],
-                                  [-1, -1],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 9 and position_y+size == 9:     # 5
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x in range(1, 9) and position_y+size < 9:     # 6
-                SQRS_ARND_SHIP = [[-1, 1],
-                                  [0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [-1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y+size < 9:     # 7
-                SQRS_ARND_SHIP = [[0, 1],
-                                  [1, 1],
-                                  [1, 0]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
-
-            elif position_x == 0 and position_y+size < 9:     # 8
-                SQRS_ARND_SHIP = [[0, 1],
-                                  [1, 1],
-                                  [1, 0],
-                                  [1, -1],
-                                  [0, -1]]
-                add_squares_around_vertical(SQRS_ARND_SHIP)
+            SQRS_ARND_SHIP = [[-1, 1],
+                              [0, 1],
+                              [1, 1],
+                              [1, 0],
+                              [1, -1],
+                              [0, -1],
+                              [-1, -1],
+                              [-1, 0]]
+            self.add_squares_around_vertical(SQRS_ARND_SHIP, position_x, position_y, size, is_horizontal)
 
     def check_position(self, position_x, position_y, size, is_horizontal):
         checking_size = size + 2

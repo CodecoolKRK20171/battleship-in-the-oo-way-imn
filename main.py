@@ -9,6 +9,8 @@ BATTLESHIP_SIZES = [['Carrier', 5],
                     ['Submarine', 3],
                     ['Destroyer', 2]]
 
+BATTLESHIP_SIZES = {'Carrier': 5, 'Destroyer': 2}
+
 
 def print_table(table, title_list):
     '''Prints given table with nice, smooth order and with centered values in cells.
@@ -64,64 +66,81 @@ def print_table(table, title_list):
 # def add_player():
 
 
-def main():
-
-    player1 = input('Enter your name: ')
-    ocean1 = Ocean()
-    ocean1.load_board()
-    player = Player(player1, ocean1)
-
+def get_coordinates(player):
+    statki_wybrane = False
     ship_kinds = []
-    for i in range(len(BATTLESHIP_SIZES)):
-        ship_kinds.append(BATTLESHIP_SIZES[i][0])
-    print(ship_kinds)
 
-    while len(BATTLESHIP_SIZES) > 0:
-        print_table(BATTLESHIP_SIZES, ['Battleship kind', 'Size'])
+    for key in BATTLESHIP_SIZES:
+        ship_kinds.append(key)
+
+    while len(ship_kinds) > 0:
+        print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
         ship_choice = input('Enter which ship you would like to locate: ')
+
         if ship_choice in ship_kinds:
-
-            index_to_del = 0
-            for i in range(len(BATTLESHIP_SIZES)):
-                if ship_choice in BATTLESHIP_SIZES[i]:
-                    break
-                else:
-                    index_to_del += 1
-
-            ship_size = int(BATTLESHIP_SIZES[index_to_del][1])
-
-            del BATTLESHIP_SIZES[index_to_del]
+            ship_size = int(BATTLESHIP_SIZES[ship_choice])
             ship_kinds.remove(ship_choice)
-            print(BATTLESHIP_SIZES)
 
-            is_horizontal = int(input('\nEnter if your ship is horizontal(1/0): '))
+            is_horizontal = ''
+            while is_horizontal not in ['1', '0']:
+                is_horizontal = input('\nEnter if your ship is horizontal(1/0): ')
 
             print('\nNow you need to locate your battleships')
-            position = input('Enter coordinates(e.g. H5): ')
             letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+            # position = ''
+            # while position[0].upper() not in letters and int(position[1]) > 9:
+            position = input('Enter coordinates(e.g. H5): ')
 
             for letter in letters:
                 if position[0].upper() == letter:
                     position_x = int(letters.index(letter))
             position_y = int(position[1])
             check = player.check_position(position_x, position_y, ship_size, is_horizontal)
-            if check:
-                player.add_ship(position_x, position_y, ship_size, is_horizontal)
-            else:
-                print('koza')
-            for row in ocean1.board:
-                for column in row:
-                    column.un_hide()
-            print(ocean1)
+            if check == False:
+                break
         else:
-            print('There is no such ship!')
+            print('There is no such option!')
+    return position_x, position_y, ship_size, int(is_horizontal)
 
-    print('statki wybrane')
+
+def main():
+
+    player1 = input('Enter your name: ')
+
+    ocean1 = Ocean()
+    ocean1.load_board()
+    player1 = Player(player1, ocean1)
+    statki_wybrane = False
+
+    position_x, position_y, ship_size, is_horizontal = get_coordinates(player1)
+    player1.add_ship(position_x, position_y, ship_size, is_horizontal)
+    for row in ocean1.board:
+        for column in row:
+            column.un_hide()
+    print(ocean1)
+
+    player2 = input('Enter your name: ')
+
+    ocean2 = Ocean()
+    ocean2.load_board()
+    player2 = Player(player2, ocean2)
+
+    position_x2, position_y2, ship_size2, is_horizontal2 = get_coordinates(player2)
+    player2.add_ship(position_x2, position_y2, ship_size2, is_horizontal2)
+    for row in ocean1.board:
+        for column in row:
+            column.un_hide()
+    print(ocean2)
 
     player.add_ship(4, 4, 3, False)
     player.shot(4, 4)
     player.shot(1, 5)
     player.shot(5, 1)
+
+    # player.add_ship(4, 4, 3, False)
+    # player.shot(4, 4)
+    # player.shot(1, 5)
+    # player.shot(5, 1)
 
 
 if __name__ == '__main__':

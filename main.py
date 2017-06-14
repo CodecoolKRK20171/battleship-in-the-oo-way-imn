@@ -90,6 +90,7 @@ def main():
             ship_size = int(BATTLESHIP_SIZES[ship_choice])
 
             is_horizontal = ''
+
             while is_horizontal not in ['1', '0']:
                 is_horizontal = input('\nEnter if your ship is horizontal(1/0): ')
 
@@ -106,13 +107,16 @@ def main():
                 if position[0].upper() == letter:
                     position_x = int(LETTERS.index(letter))
             position_y = int(position[1])
-            # check = player1.check_position(position_x, position_y, ship_size, is_horizontal)
-            # print(check)
-            # if check:
-            player1.add_ship(position_x, position_y, ship_size, is_horizontal)
-            print(ocean1)
+            check = player1.check_position(position_x, position_y, ship_size, is_horizontal)
+            print(check)
+            if check:
+                player1.add_ship(position_x, position_y, ship_size, is_horizontal)
+                ship_kinds.remove(ship_choice)
+                print(ocean1)
+            else:
+                print('youre bob')
 
-            ship_kinds.remove(ship_choice)
+            
 
         else:
             print('There is no such option!')
@@ -121,34 +125,6 @@ def main():
         for column in row:
             column.un_hide()
     print(ocean1)
-
-<<<<<<< HEAD
-    player2 = input('Enter your name: ')
-
-    ocean2 = Ocean()
-    ocean2.load_board()
-    player2 = Player(player2, ocean2)
-
-    # position_x2, position_y2, ship_size2, is_horizontal2 = get_coordinates(player2)
-    player2.add_ship(position_x2, position_y2, ship_size2, is_horizontal2)
-    for row in ocean1.board:
-        for column in row:
-            column.un_hide()
-    print(ocean2)
-
-
-
-
-
-
-    # player.add_ship(4, 4, 3, False)
-    # player.shot(4, 4)
-    # player.shot(1, 5)
-    # player.shot(5, 1)
-
-
-=======
->>>>>>> 6f9adf101a879956fa10aa7752f75646aa40a7f0
 
 if __name__ == '__main__':
     main()

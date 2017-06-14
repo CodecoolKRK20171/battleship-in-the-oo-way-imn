@@ -130,7 +130,7 @@ def main():
     ocean2.load_board()
     player2 = Player(player2, ocean2)
 
-    position_x2, position_y2, ship_size2, is_horizontal2 = get_coordinates(player2)
+    # position_x2, position_y2, ship_size2, is_horizontal2 = get_coordinates(player2)
     player2.add_ship(position_x2, position_y2, ship_size2, is_horizontal2)
     for row in ocean1.board:
         for column in row:

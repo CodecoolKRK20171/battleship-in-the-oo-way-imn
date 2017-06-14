@@ -1,6 +1,7 @@
 class Square:
     def __init__(self, row, column):
-        self.is_hidden = True
+        self.is_hidden = False
+        self.is_water = False
         self.is_ship = False
         self.row = row
         self.column = column
@@ -20,3 +21,7 @@ class Square:
 
     def ship(self):
         self.is_ship = True
+    
+    def water(self):
+        self.is_water = True
+        

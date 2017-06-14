@@ -186,17 +186,3 @@ class Player:
                 elif self.ocean.board[horizontal_position_y+i][position_x+1].is_water or self.ocean.board[horizontal_position_y+i][position_x-1].is_water:
                     return False
             return True
-
-# player1 = input('Enter your name: ')
-# ocean1 = Ocean()
-# ocean1.load_board()
-# player = Player(player1, ocean1)
-
-# player.add_ship(1, 5, 3, True)
-# check = player.check_position(2, 5, 3, True)
-# print(check)
-# player.add_ship(4, 4, 3, False)
-# player.shot(4, 4)
-# player.shot(1, 5)
-# player.shot(5, 1)
-# print(ocean1)

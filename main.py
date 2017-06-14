@@ -3,8 +3,6 @@ from ocean import Ocean
 from player import Player
 
 
-
-
 BATTLESHIP_SIZES = [['Carrier', 5],
                     ['Battleship', 4],
                     ['Cruiser', 3],
@@ -68,12 +66,10 @@ def print_table(table, title_list):
 
 def main():
 
-
     player1 = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
     player = Player(player1, ocean1)
-
 
     ship_kinds = []
     for i in range(len(BATTLESHIP_SIZES)):
@@ -100,12 +96,11 @@ def main():
 
             is_horizontal = int(input('\nEnter if your ship is horizontal(1/0): '))
 
-
             print('\nNow you need to locate your battleships')
             position = input('Enter coordinates(e.g. H5): ')
             letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
-            for letter in  letters:
+            for letter in letters:
                 if position[0].upper() == letter:
                     position_x = int(letters.index(letter))
             position_y = int(position[1])
@@ -123,12 +118,10 @@ def main():
 
     print('statki wybrane')
 
-
     player.add_ship(4, 4, 3, False)
     player.shot(4, 4)
     player.shot(1, 5)
     player.shot(5, 1)
-
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 ## Specification
 
+Create board made of 100 squares.
 
 ### Class Ocean
 
@@ -14,9 +15,9 @@ __Instance methods__
 
 * `__str__(self)`
 
-  Returns string with proper composition.
+  Returns string(board) with proper composition.
 
-* `fill_board(self)`
+* `load_board(self)`
 
   Append empty spaces to board.
   Adds ship to board on proper places/

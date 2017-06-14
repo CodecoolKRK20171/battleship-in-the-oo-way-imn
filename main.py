@@ -2,12 +2,6 @@ from square import Square
 from ocean import Ocean
 from player import Player
 
-# BATTLESHIP_SIZES = [['Carrier', str(5)],
-#                     ['Battleship', str(4)],
-#                     ['Cruiser', str(3)],
-#                     ['Submarine', str(3)],
-#                     ['Destroyer', str(2)]]
-
 
 BATTLESHIP_SIZES = [['Carrier', 5],
                     ['Battleship', 4],
@@ -41,6 +35,7 @@ def print_table(table, title_list):
         cell_widths.append(max(map(len, columns[i])))   # cell_widths - list with max len of str in table columns
 
     width_of_table = 0
+
     for width in cell_widths:
         width_of_table += width     # sum of the longest string length from row in table
     width_of_table += len(title_list) * SPACES_AROUND_STRING + len(title_list) + 1
@@ -48,13 +43,18 @@ def print_table(table, title_list):
     print('/' + '-' * (width_of_table-SPACES_AROUND_STRING) + '\\')
     row_to_print = '|'
     line_between_rows = '|'
+
     for i in range(len(table)+1):
+
         for j in range(len(title_list)):
             row_to_print += columns[j][i].center(cell_widths[j]+SPACES_AROUND_STRING) + '|'
             line_between_rows += '-'*(cell_widths[j]+SPACES_AROUND_STRING) + '|'
+
         print(row_to_print)
+
         if i == len(table):
             print('\\' + '-' * (width_of_table-SPACES_AROUND_STRING) + '/')
+
         else:
             print(line_between_rows)
             row_to_print = '|'

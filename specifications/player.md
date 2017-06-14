@@ -1,10 +1,18 @@
 ## Specification
 
+Create a player, add ship in proper place.
 
 ### Class Player
 
 __Attributes__
-  --
+
+* `name`
+  - data: string
+  - description: name of the player
+
+* `ocean`
+  - data: list of lists
+  - description: board (nested list) made of squares
 
 __Instance methods__
 
@@ -12,10 +20,10 @@ __Instance methods__
 
   Constructs an Player object.
 
-* `add_ship(self, position_x, position_y, size, is horizontal=False)`
+* `shot(self, position_x, position_y)`
 
-  Creating list of positions of the Ship and add this to list ships.
+  Takes a shot i proper position in the board.
 
-* `shot(self)`
+* `add_ship(self, position_x, position_y, size, is_horizontal)`
 
-  ...
+  Adds ships in proper positions in board.

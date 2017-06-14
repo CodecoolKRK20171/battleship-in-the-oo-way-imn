@@ -3,18 +3,13 @@ from ocean import Ocean
 from player import Player
 
 
-<<<<<<< HEAD
 
-# BATTLESHIP_SIZES = [['Carrier', 5],
-#                     ['Battleship', 4],
-#                     ['Cruiser', 3],
-#                     ['Submarine', 3],
-#                     ['Destroyer', 2]]
 
-=======
->>>>>>> 60f42afbeff7ce611fb3b3fecd02bad030de6929
 BATTLESHIP_SIZES = [['Carrier', 5],
-                    ['Battleship', 4]]
+                    ['Battleship', 4],
+                    ['Cruiser', 3],
+                    ['Submarine', 3],
+                    ['Destroyer', 2]]
 
 
 def print_table(table, title_list):

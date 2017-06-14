@@ -15,8 +15,8 @@ class Player:
             print('Miss!')
 
     def add_ship(self, position_x, position_y, size, is_horizontal):
-        
-        
+
+
         if is_horizontal:
             for i in range(size):
                 self.ocean.board[position_y][position_x+i].ship()
@@ -34,7 +34,7 @@ class Player:
         else:
             for i in range(size):
                 self.ocean.board[position_y+i][position_x].ship()
-                self.ocean.board[position_y+i][position_x].water()               
+                self.ocean.board[position_y+i][position_x].water()
                 self.ocean.board[position_y+1][position_x].water()
                 self.ocean.board[position_y+1][position_x+1].water()
                 self.ocean.board[position_y+1][position_x-1].water()
@@ -67,16 +67,16 @@ class Player:
                 else:
                     return True
 
-player1 = input('Enter your name: ')
-ocean1 = Ocean()
-ocean1.load_board()
-player = Player(player1, ocean1)
-
-player.add_ship(1, 5, 3, True)
-check = player.check_position(2, 5, 3, True)
-print(check)
-player.add_ship(4, 4, 3, False)
-player.shot(4, 4)
-player.shot(1, 5)
-player.shot(5, 1)
-print(ocean1)
+# player1 = input('Enter your name: ')
+# ocean1 = Ocean()
+# ocean1.load_board()
+# player = Player(player1, ocean1)
+#
+# player.add_ship(1, 5, 3, True)
+# check = player.check_position(2, 5, 3, True)
+# print(check)
+# player.add_ship(4, 4, 3, False)
+# player.shot(4, 4)
+# player.shot(1, 5)
+# player.shot(5, 1)
+# print(ocean1)

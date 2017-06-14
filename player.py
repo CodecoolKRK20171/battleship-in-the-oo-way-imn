@@ -15,34 +15,133 @@ class Player:
             print('Miss!')
 
     def add_ship(self, position_x, position_y, size, is_horizontal):
-        
-        
+
+
+
         if is_horizontal:
-            for i in range(size):
-                self.ocean.board[position_y][position_x+i].ship()
-                self.ocean.board[position_y][position_x+i].water()
-                self.ocean.board[position_y+1][position_x].water()
-                self.ocean.board[position_y+1][position_x+1].water()
-                self.ocean.board[position_y+1][position_x-1].water()
-                self.ocean.board[position_y-1][position_x].water()
-                self.ocean.board[position_y-1][position_x+1].water()
-                self.ocean.board[position_y-1][position_x-1].water()
-                self.ocean.board[position_y][position_x+1].water()
-                self.ocean.board[position_y][position_x-1].water()
+            if position_x+size < 9 and position_y == 0:     # 9
+                SQUARES_AROUND_SHIP = [[-1, 1],
+                                       [0, 1],
+                                       [1, 1],
+                                       [1, 0],
+                                       [1, -1],
+                                       [0, -1],
+                                       [-1, -1],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x == 0 and position_y == 0:   # 1  
+                SQUARES_AROUND_SHIP = [[1, 0],
+                                       [1, -1],
+                                       [0, -1]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x+size < 9 and position_y == 0:     # 2
+                SQUARES_AROUND_SHIP = [[1, 0],
+                                       [1, -1],
+                                       [0, -1],
+                                       [-1, -1],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x+size == 9 and position_y == 0:     # 3
+                SQUARES_AROUND_SHIP = [[0, -1],
+                                       [-1, -1],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x+size == 9 and position_y in range(1, 9):     # 4
+                SQUARES_AROUND_SHIP = [[-1, 1],
+                                       [0, 1],
+                                       [0, -1],
+                                       [-1, -1],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x+size == 9 and position_y == 9:     # 5
+                SQUARES_AROUND_SHIP = [[-1, 1],
+                                       [0, 1],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x+size < 9 and position_y in range(1, 9):     # 6
+                SQUARES_AROUND_SHIP = [[-1, 1],
+                                       [0, 1],
+                                       [1, 1],
+                                       [1, 0],
+                                       [-1, 0]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x == 0 and position_y == 9:     # 7
+                SQUARES_AROUND_SHIP = [[0, 1],
+                                       [1, 1],
+                                       [1, 0],]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
+
+            elif position_x == 0 and position_y in range(1, 9):     # 8
+                SQUARES_AROUND_SHIP = [[0, 1],
+                                       [1, 1],
+                                       [1, 0],
+                                       [1, -1],
+                                       [0, -1]]
+                for i in range(size):
+                    self.ocean.board[position_y][position_x+i].ship()
+                    self.ocean.board[position_y][position_x+i].water()
+
+                    for j in range(len(SQUARES_AROUND_SHIP)):
+                        self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
 
 
-        else:
-            for i in range(size):
-                self.ocean.board[position_y+i][position_x].ship()
-                self.ocean.board[position_y+i][position_x].water()               
-                self.ocean.board[position_y+1][position_x].water()
-                self.ocean.board[position_y+1][position_x+1].water()
-                self.ocean.board[position_y+1][position_x-1].water()
-                self.ocean.board[position_y-1][position_x].water()
-                self.ocean.board[position_y-1][position_x+1].water()
-                self.ocean.board[position_y-1][position_x-1].water()
-                self.ocean.board[position_y][position_x+1].water()
-                self.ocean.board[position_y][position_x-1].water()
+
+        else:   # horizontal = False
+            pass
+
+            # for i in range(size):
+            #     self.ocean.board[position_y+i][position_x].ship()
+            #     self.ocean.board[position_y+i][position_x].water()
+
+            #     for j in range(len(SQUARES_AROUND_SHIP)):
+            #         self.ocean.board[position_y + SQUARES_AROUND_SHIP[j][0]][position_x + SQUARES_AROUND_SHIP[j][1]].water()
 
     def check_position(self, position_x, position_y, size, is_horizontal):
 
@@ -55,8 +154,7 @@ class Player:
                     return False
                 elif self.ocean.board[position_y+1][horizontal_position_x+i].is_water or self.ocean.board[position_y-1][horizontal_position_x+i].is_water:
                     return False
-                else:
-                    return True
+            return True
         else:
             horizontal_position_y = position_y - 1
             for i in range(checking_size):
@@ -64,19 +162,18 @@ class Player:
                     return False
                 elif self.ocean.board[horizontal_position_y+i][position_x+1].is_water or self.ocean.board[horizontal_position_y+i][position_x-1].is_water:
                     return False
-                else:
-                    return True
+            return True
 
-player1 = input('Enter your name: ')
-ocean1 = Ocean()
-ocean1.load_board()
-player = Player(player1, ocean1)
+# player1 = input('Enter your name: ')
+# ocean1 = Ocean()
+# ocean1.load_board()
+# player = Player(player1, ocean1)
 
-player.add_ship(1, 5, 3, True)
-check = player.check_position(2, 5, 3, True)
-print(check)
-player.add_ship(4, 4, 3, False)
-player.shot(4, 4)
-player.shot(1, 5)
-player.shot(5, 1)
-print(ocean1)
+# player.add_ship(1, 5, 3, True)
+# check = player.check_position(2, 5, 3, True)
+# print(check)
+# player.add_ship(4, 4, 3, False)
+# player.shot(4, 4)
+# player.shot(1, 5)
+# player.shot(5, 1)
+# print(ocean1)

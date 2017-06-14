@@ -17,20 +17,7 @@ class Ocean:
             ocean_str += '\n'
         return ocean_str
 
-    def add_ship(self, position_x, position_y, size, is_horizontal=False):
-        positions = []
-
-        for i in range(size):
-            if is_horizontal:
-                position_x += 1
-            else:
-                position_y += 1
-            positions.append((position_x, position_y))
-
-        positions = tuple(positions)
-        self.ships.append(Ship(positions))
-
-    def fill_board(self):
+    def load_board(self):
         for i in range(0, 10):
             self.board.append([])
             for j in range(0, 10):

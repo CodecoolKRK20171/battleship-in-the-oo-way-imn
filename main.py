@@ -64,11 +64,53 @@ def print_table(table, title_list):
             line_between_rows = '|'
 
 
-# def add_player():
+# # def add_player():
 
 
-def get_coordinates(player):
-    statki_wybrane = False
+def get_coordinates(player, ship_kinds, BATTLESHIP_SIZES):
+
+    print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
+    ship_choice = input('Enter which ship you would like to locate: ')
+
+    if ship_choice in ship_kinds:
+        ship_size = int(BATTLESHIP_SIZES[ship_choice])
+        ship_kinds.remove(ship_choice)
+
+        is_horizontal = ''
+        while is_horizontal not in ['1', '0']:
+            is_horizontal = input('\nEnter if your ship is horizontal(1/0): ')
+
+        print('\nNow you need to locate your battleships')
+        letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+        # position = ''
+        # while position[0].upper() not in letters and int(position[1]) > 9:
+        position = input('Enter coordinates(e.g. H5): ')
+
+        for letter in letters:
+            if position[0].upper() == letter:
+                position_x = int(letters.index(letter))
+        position_y = int(position[1])
+        # check = player.check_position(position_x, position_y, ship_size, is_horizontal)
+        # if check == False:
+        #     break
+    else:
+        print('There is no such option!')
+    return position_x, position_y, ship_size, int(is_horizontal)
+
+
+
+
+
+
+def main():
+
+    player1 = input('Enter your name: ')
+
+
+    ocean1 = Ocean()
+    ocean1.load_board()
+    player1 = Player(player1, ocean1)
+
     ship_kinds = []
 
     for key in BATTLESHIP_SIZES:
@@ -96,50 +138,17 @@ def get_coordinates(player):
                 if position[0].upper() == letter:
                     position_x = int(letters.index(letter))
             position_y = int(position[1])
-            check = player.check_position(position_x, position_y, ship_size, is_horizontal)
-            if check == False:
-                break
+            player1.add_ship(position_x, position_y, ship_size, is_horizontal)
+            # check = player1.check_position(position_x, position_y, ship_size, is_horizontal)
+            # if check:
+            #     pass
+
         else:
             print('There is no such option!')
-    return position_x, position_y, ship_size, int(is_horizontal)
-
-
-
-
-
-
-def main():
-
-    player1 = input('Enter your name: ')
-
-    ocean1 = Ocean()
-    ocean1.load_board()
-    player1 = Player(player1, ocean1)
-    statki_wybrane = False
-
-    position_x, position_y, ship_size, is_horizontal = get_coordinates(player1)
-    player1.add_ship(position_x, position_y, ship_size, is_horizontal)
     for row in ocean1.board:
         for column in row:
             column.un_hide()
     print(ocean1)
-
-    player2 = input('Enter your name: ')
-
-    ocean2 = Ocean()
-    ocean2.load_board()
-    player2 = Player(player2, ocean2)
-
-    position_x2, position_y2, ship_size2, is_horizontal2 = get_coordinates(player2)
-    player2.add_ship(position_x2, position_y2, ship_size2, is_horizontal2)
-    for row in ocean1.board:
-        for column in row:
-            column.un_hide()
-    print(ocean2)
-
-
-
-
 
 
     # player.add_ship(4, 4, 3, False)

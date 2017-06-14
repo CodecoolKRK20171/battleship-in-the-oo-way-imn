@@ -2,24 +2,37 @@ from square import Square
 from ocean import Ocean
 from player import Player
 
+BATTLESHIP_SIZES = [['Carrier', 5],
+                    ['Battleship', 4],
+                    ['Cruiser', 3],
+                    ['Submarine', 2],
+                    ['Destroyer', 1]]
 
-def player_inputs(ship_x, ship_y, ship_size, is_horizontal):
-    pass
+
+# def add_player():
+
+
 
 
 def main():
+    
+    
+    player1 = input('Enter your name: ')
+    ocean1 = Ocean()
+    ocean1.load_board()
+    player = Player(player1, ocean1)
+    print('Now you need to locate your battleships\n')
 
-    ocean = Ocean()
-    ocean.fill_board()
-    player = Player('Andrzej', ocean)
+    for key, value in BATTLESHIP_SIZES.items():
+        print('{} size: {}'.format(key, value))
+
 
     player.add_ship(1, 5, 3, True)
     player.add_ship(4, 4, 3, False)
     player.shot(4, 4)
     player.shot(1, 5)
     player.shot(5, 1)
-    print(ocean)
-
+    print(ocean1)
 
 if __name__ == '__main__':
     main()

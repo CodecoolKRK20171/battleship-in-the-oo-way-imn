@@ -68,7 +68,7 @@ class Player:
             self.add_squares_around_vertical(SQRS_ARND_SHIP, position_x, position_y, size, is_horizontal)
 
     def check_position(self, position_x, position_y, size, is_horizontal):
-        checking_size = size + 2
+    
 
         if is_horizontal:
 
@@ -78,6 +78,8 @@ class Player:
                 if x in range(0, 10) and y in range(0, 10):
                     if self.ocean.board[x][y].is_water:
                         return False
+                else:
+                    return False
             return True
 
         else:
@@ -88,22 +90,6 @@ class Player:
                 if x in range(0, 10) and y in range(0, 10):
                     if self.ocean.board[x][y].is_water:
                         return False
+                else:
+                    return False
             return True
-
-
-        
-            
-        #     for i in range(checking_size):
-        #         if self.ocean.board[position_y][position_x+i].is_water:
-        #             return False
-        #         elif self.ocean.board[position_y+1][position_x+i].is_water or self.ocean.board[position_y-1][position_x+i].is_water:
-        #             return False
-        #     return True
-        # else:
-            
-        #     for i in range(checking_size):
-        #         if self.ocean.board[position_y+i][position_x].is_water:
-        #             return False
-        #         elif self.ocean.board[position_y+i][position_x+1].is_water or self.ocean.board[position_y+i][position_x-1].is_water:
-        #             return False
-        #     return True

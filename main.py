@@ -13,6 +13,17 @@ BATTLESHIP_SIZES = {'C': 5}
                     # 'Destroyer': 2}
 
 
+def read_file():
+    board = []
+    column = []
+    with open('intro.txt') as text:
+        for line in text.readlines():
+            column.append(line)
+        board.append(column)
+    for line in board:
+        print(''.join(line))
+
+
 def print_table(table, title_list):
     '''Prints given table with nice, smooth order and with centered values in cells.
 
@@ -64,7 +75,7 @@ def print_table(table, title_list):
             line_between_rows = '|'
 
 def insert_ships_to_table(ocean, player):
-    
+
     ship_kinds = []
     
     for key in BATTLESHIP_SIZES:
@@ -114,6 +125,7 @@ def insert_ships_to_table(ocean, player):
 
 
 def main():
+    read_file()
     player1 = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
@@ -128,12 +140,6 @@ def main():
     player2 = Player(player2, ocean2)
     insert_ships_to_table(ocean2, player2)
 
-
-
-
-
-
-        
 
 if __name__ == '__main__':
     main()

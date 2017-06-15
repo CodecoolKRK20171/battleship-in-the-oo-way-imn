@@ -8,7 +8,30 @@ The object of Battleship is to try and sink all of the other player's before the
 
 
 ### `main.py`
-Controls of the program.
+
+* `read_file`
+
+  Reads data from file and formats list of lists to a string.
+
+* `print_table(table, table_list)`
+
+  Prints given table with nice, smooth order and with centered values in cells.
+  Args:
+    table (nested list): table with data
+    title_list (list of strings): list with titles of data in table
+  Returns:
+    None
+* `insert_ships_to_table(ocean, player)`
+
+  Gets inputs from user(name/coordinates/type of ship/horizontal or vertical position) and adds ships with given coordinates to ocean board.
+  Args:
+    ocean: *Ocean* object.
+    player: *player* object.
+
+* `main`
+
+  Controls the whole program.
+
 
 
 ### `square.py`
@@ -104,11 +127,6 @@ __Attributes__
   - data: *Ocean* object
   - description:
 
-__Attributes__
-* `shot_position`
-  - data:
-  - description:
-
 __Instance methods__
 
 * ##### ` __init__(self)`
@@ -136,3 +154,7 @@ __Instance methods__
 
   Checks if ship can be located with given coordinates by checking if it's in range of table size and if there is no already located ships.
   Returns True if ship can be located. Otherwise, returns False.
+
+### `intro.txt`
+
+    File with ASCII art used as introduction screen of the game.

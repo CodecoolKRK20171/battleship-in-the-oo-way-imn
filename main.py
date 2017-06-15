@@ -77,13 +77,14 @@ def print_table(table, title_list):
 def insert_ships_to_table(ocean, player):
 
     ship_kinds = []
-    
+
     for key in BATTLESHIP_SIZES:
         ship_kinds.append(key)
 
+
     while len(ship_kinds) > 0:
         print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
-        
+
         ship_choice = input('Enter which ship you would like to locate: ')
 
         if ship_choice in ship_kinds:

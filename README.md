@@ -8,7 +8,30 @@ The object of Battleship is to try and sink all of the other player's before the
 
 
 ### `main.py`
-Controls of the program.
+
+* `read_file`
+
+  Reads data from file and prints formated list of lists to a string.
+
+* `print_table(table, table_list)`
+
+  Prints given table with nice, smooth order and with centered values in cells.
+  Args:
+    table (nested list): table with data
+    title_list (list of strings): list with titles of data in table
+  Returns:
+    None
+* `insert_ships_to_table(ocean, player)`
+
+  Gets inputs from user(name/coordinates/type of ship/horizontal or vertical position) and adds ships with given coordinates to ocean board.
+  Args:
+    ocean: *Ocean* object.
+    player: *player* object.
+
+* `main`
+
+  Controls the whole program.
+
 
 
 ### `square.py`
@@ -17,9 +40,17 @@ Controls of the program.
 
 __Attributes__
 
-* `is_marked`
+* `is_hidden`
   - data: boolean
-  - description: is square mark - yes-True, no-False
+  - description: is square hidden - yes-True, no-False
+
+* `is_water`
+  - data: boolean
+  - description: is square water - yes-True, no-False
+
+* `is_ship`
+  - data: boolean
+  - description: is square ship - yes-True, no-False
 
 * `row`
   - data: int
@@ -38,69 +69,117 @@ __Instance methods__
 
 * `__str__(self)`
 
-  Returns proper string sign of *is_marked*.
+  Returns proper string sign of *is_hidden*, *is_ship*, *is_water*.
 
+* `hide(self)`
 
-### `ship.py`
+  Sets *is_hidden* value to True.
 
-### Class Ship
+* `ship(self)`
 
-__Attributes__
+  Sets *is_ship* value to True.
 
-* `position`
-  - data: tuple
-  - description: tuple with ship positions
+* `water(self)`
 
-__Instance methods__
-
-* ##### ` __init__(self, positions)`
-
-  Constructs an Ship object.
-  Creating list *squares* with Ship positions.
-
-* `__str__(self)`
-
-  Creating a string with proper length of Ship *x* and returns it.
-
+  Sets *is_water* value to True.
 
 ### `ocean.py`
 
 ### Class Ocean
 
 __Attributes__
-  --
+* `ships`
+  - data: list
+  - description: empty list of ships
+
+* `board`
+  - data: list
+  - description: empty list of board
+
 
 __Instance methods__
 
 * ##### ` __init__(self)`
 
   Constructs an Ocean object.
+  Initializes empty lists.
 
 * `__str__(self)`
 
   Returns string with proper composition.
 
-* `add_ship(self, position_x, position_y, size, is horizontal=False)`
 
-  Creating list of positions of the Ship and add this to list ships.
-
-* `fill_board(self)`
+* `load_board(self)`
 
   Append empty spaces to board.
-  Adds ship to board on proper places/
+  Adds ship to board on proper places.
 
 
 ### `player.py`
 
 ### Class Player
-
 __Attributes__
-* `shot_position`
-  - data:
-  - description: 
+* `name`
+  - data: str
+  - description: name of player
+
+* `ocean`
+  - data: *Ocean* object
+  - description:
 
 __Instance methods__
 
 * ##### ` __init__(self)`
 
   Constructs an Player object.
+
+* `shot(self, position_x, position_y)`
+
+  Unhides squares with given coordinates.
+  Prints appropriate message for user('Hit'/'Miss')
+
+  Parameters:
+  position_x: int
+  position_y: int
+
+* `add_squares_around_horizontal(self, square_around_list, position_x,  position_y, size, is_horizontal)`
+
+  Horizontally adds forbidden signs (where user can't locate a ship) around already located ship.
+
+  Parameters:
+  position_x: int
+  position_y: int
+  is_horizontal: boolean
+* `add_squares_around_horizontal(self, square_around_list, position_x,  position_y, size, is_vertical)`
+
+  Vertically adds forbidden signs (where user can't locate a ship) around already located ship.
+
+  Parameters:
+  position_x: int
+  position_y: int
+  size: int
+  is_vertical: boolean
+
+* `add_ship(self, position_x, position_y, size, is horizontal)`
+
+  Creating list of positions of the Ship and add this to list ships.
+
+  Parameters:
+  position_x: int
+  position_y: int
+  size: int
+  is_horizontal: boolean
+
+* `check_position(self, position_x, position_y, is_horizontal)`
+
+  Checks if ship can be located with given coordinates by checking if it's in range of table size and if there is no already located ships.
+  Returns True if ship can be located. Otherwise, returns False.
+  
+  Parameters:
+  position_x: int
+  position_y: int
+  is_horizontal: boolean
+
+### `intro.txt`
+
+    File with ASCII art used as introduction screen of the game.

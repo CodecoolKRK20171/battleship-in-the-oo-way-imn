@@ -183,3 +183,7 @@ __Instance methods__
 ### `intro.txt`
 
     File with ASCII art used as introduction screen of the game.
+
+### `end_screen.txt`
+
+    File with ASCII art used as introduction screen of the game.

@@ -6,35 +6,38 @@ import os
 
 LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
-BATTLESHIP_SIZES = {'C': 5}
-                    # 'Battleship': 4,
-                    # 'Cruiser': 3,
-                    # 'Submarine': 3,
-                    # 'Destroyer': 2}
+BATTLESHIP_SIZES = {'Carrier': 5,
+                    'Battleship': 4,
+                    'Cruiser': 3,
+                    'Submarine': 3,
+                    'Destroyer': 2}
 
 
-def read_file():
+def display_intro_screen():
     board = []
     column = []
     with open('intro.txt') as text:
         for line in text.readlines():
             column.append(line)
         board.append(column)
+
+    for line in board:
+        print(''.join(line))
+
+
+def display_end_game_screen():
+    board = []
+    column = []
+    with open('end_screen.txt') as text:
+        for line in text.readlines():
+            column.append(line)
+        board.append(column)
+
     for line in board:
         print(''.join(line))
 
 
 def print_table(table, title_list):
-    '''Prints given table with nice, smooth order and with centered values in cells.
-
-    Args:
-        table (nested list): table with data
-        title_list (list of strings): list with titles of data in table
-
-    Returns:
-        None
-
-    '''
     for i in range(len(table)):     # changing ints (ship sizes) to strings
         table[i][1] = str(table[i][1])
 
@@ -74,6 +77,7 @@ def print_table(table, title_list):
             row_to_print = '|'
             line_between_rows = '|'
 
+
 def insert_ships_to_table(ocean, player):
 
     ship_kinds = []
@@ -81,11 +85,11 @@ def insert_ships_to_table(ocean, player):
     for key in BATTLESHIP_SIZES:
         ship_kinds.append(key)
 
-
     while len(ship_kinds) > 0:
         print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
 
-        ship_choice = input('Enter which ship you would like to locate: ')
+        ship_choice = input('Enter which ship you would like to locate: ').lower()
+        ship_choice = ship_choice.title()
 
         if ship_choice in ship_kinds:
             ship_size = BATTLESHIP_SIZES[ship_choice]
@@ -115,17 +119,19 @@ def insert_ships_to_table(ocean, player):
                 player.add_ship(position_x, position_y, ship_size, is_horizontal)
                 ship_kinds.remove(ship_choice)
                 print(ocean)
-                input('Press Enter to continue')
+                input('Press Enter to continue+')
                 os.system('clear')
             else:
                 print('You can\'t locate your ship here.')
         else:
-            print('There is no ship with that name!')
+            print('\nThere is no ship with that name!\n')
+
 
 def hide_squares(ocean):
     for row in ocean.board:
         for column in row:
             column.hide()
+
 
 def player_round(ocean, player):
 
@@ -133,20 +139,20 @@ def player_round(ocean, player):
     end_game = False
     print(ocean)
     while not next_player:
-        
+
         position = input('\nEnter coordinates where you want to shot(e.g. H5): ')
-        
+
         for letter in LETTERS:
             if position[0].upper() == letter:
                 position_x = int(LETTERS.index(letter))
             position_y = int(position[1])
-        
+
         result = player.shot(position_x, position_y)
-        
+
         end_game = ocean.check_end_game()
         if end_game:
             return True
-        
+
         print(ocean)
         if result == True:
             print('You hited the ship, another shot for you')
@@ -160,7 +166,7 @@ def player_round(ocean, player):
 
 
 def main():
-    read_file()
+    display_intro_screen()
     player1_name = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
@@ -176,10 +182,7 @@ def main():
     insert_ships_to_table(ocean2, player2)
 
     os.system('clear')
-    print('Now its time to start the game!\n')
-    print(player1_name + ' is starting:')
-
-    input('If ' + player2_name + ' is not watching we can start. Press Enter to continue')
+    input('Now its time to start the game! If you\'re ready press Enter: \n')
 
     hide_squares(ocean1)
     hide_squares(ocean2)
@@ -187,6 +190,7 @@ def main():
     end_game = False
 
     players_list = [[ocean1, player1], [ocean2, player2]]
+
     rounds = 0
     while not end_game:
         attacker = players_list[rounds % 2]
@@ -197,6 +201,7 @@ def main():
         end_game = player_round(deffender[0], deffender[1])
         rounds += 1
 
+    display_end_game_screen()
 
 if __name__ == '__main__':
     main()

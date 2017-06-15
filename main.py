@@ -14,6 +14,15 @@ LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
 
 BATTLESHIP_SIZES = {'c': 3, 'b': 2}
 
+def read_file():
+    board = []
+    column = []
+    with open('intro.txt') as text:
+        for line in text.readlines():
+            column.append(line)
+        board.append(column)
+    for line in board:
+        print(''.join(line))
 
 
 def print_table(table, title_list):
@@ -71,6 +80,7 @@ def print_table(table, title_list):
 # # def add_player():
 
 def main():
+    read_file()
     player1 = input('Enter your name: ')
 
     ocean1 = Ocean()
@@ -115,7 +125,7 @@ def main():
             else:
                 print('youre bob')
 
-            
+
 
         else:
             print('There is no such option!')

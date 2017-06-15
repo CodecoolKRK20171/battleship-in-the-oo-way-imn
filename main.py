@@ -127,19 +127,37 @@ def insert_ships_to_table(ocean, player):
 
 def main():
     read_file()
-    player1 = input('Enter your name: ')
+    player1_name = input('Enter your name: ')
     ocean1 = Ocean()
     ocean1.load_board()
-    player1 = Player(player1, ocean1)
+    player1 = Player(player1_name, ocean1)
     insert_ships_to_table(ocean1, player1)
 
     print('Now player 2')
 
-    player2 = input('Enter your name: ')
+    player2_name = input('Enter your name: ')
     ocean2 = Ocean()
     ocean2.load_board()
-    player2 = Player(player2, ocean2)
+    player2 = Player(player2_name, ocean2)
     insert_ships_to_table(ocean2, player2)
+
+    os.system('clear')
+    print('Now its time to start the game!\n')
+    print(player1_name + ' is starting:')
+
+    input('If ' + player2_name + ' is not watching we can start. Press Enter to continue')
+
+    for row in ocean1.board:
+        for column in row:
+            column.hide()
+    print(ocean1)
+
+    for row in ocean2.board:
+        for column in row:
+            column.hide()
+    print(ocean2)
+
+
 
 
 if __name__ == '__main__':

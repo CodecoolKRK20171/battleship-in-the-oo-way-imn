@@ -24,3 +24,13 @@ class Ocean:
             self.board.append([])
             for j in range(0, 10):
                 self.board[i].append(Square(i, j))
+
+
+    def check_end_game(self):
+        
+        for line in self.board:
+            for square in line:
+                if square.is_ship:
+                    if square.is_hidden:
+                        return False
+        return True

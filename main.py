@@ -129,16 +129,23 @@ def hide_squares(ocean):
 def player_round(ocean, player):
 
     next_player = False
+    end_game = False
     print(ocean)
     while not next_player:
         
         position = input('\nEnter coordinates where you want to shot(e.g. H5): ')
+        
         for letter in LETTERS:
             if position[0].upper() == letter:
                 position_x = int(LETTERS.index(letter))
             position_y = int(position[1])
         
         result = player.shot(position_x, position_y)
+        
+        end_game = ocean.check_end_game()
+        if end_game:
+            return True
+        
         print(ocean)
         if result == True:
             print('You hited the ship, another shot for you')
@@ -176,20 +183,18 @@ def main():
     hide_squares(ocean1)
     hide_squares(ocean2)
 
-    while True:
-        
+    end_game = False
+
+    players_list = [[ocean1, player1], [ocean2, player2]]
+    rounds = 0
+    while not end_game:
+        attacker = players_list[rounds % 2]
+        deffender = players_list[abs((rounds % 2) - 1)]
+
         os.system('clear')
-        print(player1_name + ' is now shooting')
-
-        player_round(ocean2, player2)
-
-        os.system('clear')
-        print(player2_name + ' is now shooting')
-        
-        player_round(ocean1, player1)
-
-
-
+        print(attacker[1].name + ' is now shooting')
+        end_game = player_round(deffender[0], deffender[1])
+        rounds += 1
 
 
 if __name__ == '__main__':

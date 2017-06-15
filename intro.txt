@@ -6,7 +6,7 @@
                  =====| |.---------------------------. | |====
    <--------------------'   .  .  .  .  .  .  .  .   '--------------/
      \                                                             /
-      \_______________________________________________WWS_________/
+      \_________________________________________CodeCool_Masters__/
   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
@@ -20,4 +20,3 @@ ______   _______ __________________ _        _______  _______          _________
 | (  \ \ | (   ) |   | |      | |   | |      | (            ) || (   ) |   | |   | (
 | )___) )| )   ( |   | |      | |   | (____/\| (____/\/\____) || )   ( |___) (___| )
 |/ \___/ |/     \|   )_(      )_(   (_______/(_______/\_______)|/     \|\_______/|/
-                            MADE BY: MORDECZKI

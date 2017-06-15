@@ -11,7 +11,7 @@ The object of Battleship is to try and sink all of the other player's before the
 
 * `read_file`
 
-  Reads data from file and formats list of lists to a string.
+  Reads data from file and prints formated list of lists to a string.
 
 * `print_table(table, table_list)`
 
@@ -138,22 +138,47 @@ __Instance methods__
   Unhides squares with given coordinates.
   Prints appropriate message for user('Hit'/'Miss')
 
+  Parameters:
+  position_x: int
+  position_y: int
+
 * `add_squares_around_horizontal(self, square_around_list, position_x,  position_y, size, is_horizontal)`
 
   Horizontally adds forbidden signs (where user can't locate a ship) around already located ship.
 
+  Parameters:
+  position_x: int
+  position_y: int
+  is_horizontal: boolean
 * `add_squares_around_horizontal(self, square_around_list, position_x,  position_y, size, is_vertical)`
 
   Vertically adds forbidden signs (where user can't locate a ship) around already located ship.
+
+  Parameters:
+  position_x: int
+  position_y: int
+  size: int
+  is_vertical: boolean
 
 * `add_ship(self, position_x, position_y, size, is horizontal)`
 
   Creating list of positions of the Ship and add this to list ships.
 
+  Parameters:
+  position_x: int
+  position_y: int
+  size: int
+  is_horizontal: boolean
+
 * `check_position(self, position_x, position_y, is_horizontal)`
 
   Checks if ship can be located with given coordinates by checking if it's in range of table size and if there is no already located ships.
   Returns True if ship can be located. Otherwise, returns False.
+  
+  Parameters:
+  position_x: int
+  position_y: int
+  is_horizontal: boolean
 
 ### `intro.txt`
 

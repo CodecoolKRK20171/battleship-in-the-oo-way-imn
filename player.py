@@ -22,8 +22,10 @@ class Player:
         self.ocean.board[position_y][position_x].un_hide()
         if self.ocean.board[position_y][position_x].is_ship:
             print('Hit!')
+            return True
         else:
             print('Miss!')
+            return False
 
     def add_squares_around_horizontal(self, square_around_list, position_x, position_y, size, is_horizontal):
         for i in range(size):

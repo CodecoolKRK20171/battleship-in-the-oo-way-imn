@@ -121,6 +121,33 @@ def insert_ships_to_table(ocean, player):
         else:
             print('There is no ship with that name!')
 
+def hide_squares(ocean):
+    for row in ocean.board:
+        for column in row:
+            column.hide()
+
+def player_round(ocean, player):
+
+    next_player = False
+    print(ocean)
+    while not next_player:
+        
+        position = input('\nEnter coordinates where you want to shot(e.g. H5): ')
+        for letter in LETTERS:
+            if position[0].upper() == letter:
+                position_x = int(LETTERS.index(letter))
+            position_y = int(position[1])
+        
+        result = player.shot(position_x, position_y)
+        print(ocean)
+        if result == True:
+            print('You hited the ship, another shot for you')
+            continue
+
+        input('Press enter to change player.')
+        os.system('clear')
+        next_player = True
+
 
 
 
@@ -146,15 +173,21 @@ def main():
 
     input('If ' + player2_name + ' is not watching we can start. Press Enter to continue')
 
-    for row in ocean1.board:
-        for column in row:
-            column.hide()
-    print(ocean1)
+    hide_squares(ocean1)
+    hide_squares(ocean2)
 
-    for row in ocean2.board:
-        for column in row:
-            column.hide()
-    print(ocean2)
+    while True:
+        
+        os.system('clear')
+        print(player1_name + ' is now shooting')
+
+        player_round(ocean2, player2)
+
+        os.system('clear')
+        print(player2_name + ' is now shooting')
+        
+        player_round(ocean1, player1)
+
 
 
 

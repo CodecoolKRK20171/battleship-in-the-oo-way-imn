@@ -15,13 +15,18 @@ class Square:
                 mark = 'x'
             else:
                 mark = '0'
+
         return mark
 
     def hide(self):
         self.is_hidden = True
+
+    def un_hide(self):
+        self.is_hidden = False
 
     def ship(self):
         self.is_ship = True
 
     def water(self):
         self.is_water = True
+

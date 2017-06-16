@@ -1,10 +1,13 @@
 from square import Square
 from ocean import Ocean
 from player import Player
+import time
 import os
 
 
 LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+
+POSSIBLE_COORDINATES = [LETTERS[j] + str(i) for j in range(0, 10) for i in range(0, 10)]
 
 BATTLESHIP_SIZES = {'Carrier': 5,
                     'Battleship': 4,
@@ -44,6 +47,8 @@ def print_table(table, title_list):
     cell_widths = []
     columns = []
     SPACES_AROUND_STRING = 2
+
+    table = sorted(table, key=lambda x: x[1], reverse=True)     # list sort by value (desc)
 
     for i in range(len(title_list)):
         columns.append([title_list[i]])
@@ -86,6 +91,7 @@ def insert_ships_to_table(ocean, player):
         ship_kinds.append(key)
 
     while len(ship_kinds) > 0:
+        print(ocean)
         print_table([[ship, BATTLESHIP_SIZES[ship]] for ship in ship_kinds], ['Battleship kind', 'Size'])
 
         ship_choice = input('Enter which ship you would like to locate: ').lower()
@@ -104,11 +110,12 @@ def insert_ships_to_table(ocean, player):
             elif is_horizontal == '0':
                 is_horizontal = False
 
-            print('\nNow you need to locate your battleships\n')
-
-            print(ocean)
+            print('\nNow you need to locate your battleship.\n')
+            # time.sleep(1)
 
             position = input('\nEnter coordinates(e.g. H5): ')
+            while position.upper() not in POSSIBLE_COORDINATES:
+                position = input('\nEnter PROPER coordinates(e.g. H5): ')
 
             for letter in LETTERS:
                 if position[0].upper() == letter:
@@ -119,7 +126,7 @@ def insert_ships_to_table(ocean, player):
                 player.add_ship(position_x, position_y, ship_size, is_horizontal)
                 ship_kinds.remove(ship_choice)
                 print(ocean)
-                input('Press Enter to continue+')
+                input('Press ENTER to continue.')
                 os.system('clear')
             else:
                 print('You can\'t locate your ship here.')
@@ -141,6 +148,8 @@ def player_round(ocean, player):
     while not next_player:
 
         position = input('\nEnter coordinates where you want to shot(e.g. H5): ')
+        while position.upper() not in POSSIBLE_COORDINATES:
+            position = input('\nEnter PROPER coordinates(e.g. H5): ')
 
         for letter in LETTERS:
             if position[0].upper() == letter:
@@ -166,6 +175,7 @@ def player_round(ocean, player):
 
 
 def main():
+    os.system('clear')
     display_intro_screen()
     player1_name = input('Enter your name: ')
     ocean1 = Ocean()

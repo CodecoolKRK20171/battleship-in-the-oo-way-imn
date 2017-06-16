@@ -163,15 +163,13 @@ def player_round(ocean, player):
             return True
 
         print(ocean)
-        if result == True:
+        if result is True:
             print('You hited the ship, another shot for you')
             continue
 
         input('Press enter to change player.')
         os.system('clear')
         next_player = True
-
-
 
 
 def main():
@@ -212,6 +210,7 @@ def main():
         rounds += 1
 
     display_end_game_screen()
+
 
 if __name__ == '__main__':
     main()

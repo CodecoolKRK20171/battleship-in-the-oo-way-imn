@@ -29,4 +29,3 @@ class Square:
 
     def forbidden(self):
         self.is_forbidden = True
-

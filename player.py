@@ -3,6 +3,7 @@ from ocean import Ocean
 
 SQUARES_AROUND_SHIP = [[-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0]]
 
+
 class Player:
     def __init__(self, name, ocean):
         self.name = name
@@ -49,28 +50,24 @@ class Player:
     def check_position(self, position_x, position_y, size, is_horizontal):
 
         if is_horizontal:
-
             for i in range(size):
-                x = position_y 
+                x = position_y
                 y = position_x + i
-                
+
                 if x in range(0, 10) and y in range(0, 10):
-                    
                     if self.ocean.board[x][y].is_forbidden:
                         return False
-                
+
                 else:
                     return False
             return True
 
         else:
-
             for i in range(size):
                 x = position_y + i
                 y = position_x
-                
+
                 if x in range(0, 10) and y in range(0, 10):
-                    
                     if self.ocean.board[x][y].is_forbidden:
                         return False
                 else:
